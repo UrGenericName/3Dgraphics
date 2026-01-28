@@ -104,6 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,22 +133,22 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mesh.cpp" />
     <ClCompile Include="plane.cpp" />
     <ClCompile Include="point.cpp" />
-    <ClCompile Include="triangle.cpp" />
+    <ClCompile Include="polygon.cpp" />
     <ClCompile Include="vector.cpp" />
-    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="angle.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="line.h" />
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="plane.h" />
     <ClInclude Include="point.h" />
-    <ClInclude Include="triangle.h" />
+    <ClInclude Include="polygon.h" />
     <ClInclude Include="vector.h" />
-    <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

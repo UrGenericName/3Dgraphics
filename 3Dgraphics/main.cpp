@@ -1,14 +1,18 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "window.h"
 #include "point.h"
 #include "vector.h"
 #include "line.h"
 #include "plane.h"
-#include "triangle.h"
+#include "polygon.h"
+#include "mesh.h"
 #include "camera.h"
 #include "angle.h"
+
+namespace raylib {	// defined within namespace so names don't clash with graphics
+	#include <raylib.h>
+}
 
 using namespace graphics;
 
@@ -28,42 +32,35 @@ int main() {
 	Angle camAngle(0, 3.14159 / 5, 0);
 	Camera camera(camPoint, camAngle, 3.14159265 / 2);
 
-	Triangle triangle(Point(2, .7, .8), Point(2, -1, .5), Point(2, -.7, -.2));
+	Polygon polygonA(Point(2, .7, .8), Point(2, -1, .5), Point(2, -.7, -.2));
+	Polygon polygonB(Point(4, .7, .8), Point(4, -1, .5), Point(4, -.7, -.2));
 
-	// Draw window
-	Window* pWindow = new Window(SCREEN_WIDTH, SCREEN_HEIGHT);
-	
-	bool running = true;
-	
-	while (running) {
+	Mesh test;
+	test.polygonCollection.push_back(polygonA);
+	test.polygonCollection.push_back(polygonB);
+	std::cout << test.isValid() << std::endl;
 
-		camera.renderCamera(screen, SCREEN_WIDTH, SCREEN_HEIGHT, triangle);
-		camera.rotation.yaw += 3.14159 / 90;
+	raylib::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Graphics");
+	raylib::SetTargetFPS(15);
 
+	// Main loop
+	while (!raylib::WindowShouldClose()) 
+	{
+		camera.renderCamera(screen, SCREEN_WIDTH, SCREEN_HEIGHT, test);
+		raylib::BeginDrawing();
+		raylib::ClearBackground(raylib::BLACK);
+
+		// Draws frame onto screen
 		for (int y = 0; y < SCREEN_HEIGHT; y++) {
 			for (int x = 0; x < SCREEN_WIDTH; x++) {
-
-				if (screen[(y * (SCREEN_WIDTH - 1)) + x]) {
-					pWindow->m_pixels[(y * (SCREEN_WIDTH - 1)) + x] = RGB(255, 255, 255);
-				}
-				else {
-					pWindow->m_pixels[(y * (SCREEN_WIDTH - 1)) + x] = RGB(0, 0, 0);
-				}
-
+				screen[y * SCREEN_WIDTH + x] ? raylib::DrawPixel(x, y, raylib::WHITE) : raylib::DrawPixel(x, y, raylib::BLACK);
 			}
+			std::cout << std::endl;
+
 		}
 
-		pWindow->DrawFrame();
-
-		if (!pWindow->ProcessMessages()) {
-			running = false;
-		}
-
-		Sleep(1);
+		raylib::EndDrawing();
 	}
-	
-
-	delete pWindow;
 
 	return 0;
 }

@@ -1,7 +1,7 @@
 #include "camera.h"
 #include <iostream>
 #include "angle.h"
-#include "triangle.h"
+#include "mesh.h"
 
 namespace graphics {
 
@@ -25,7 +25,7 @@ namespace graphics {
 		return rotation.isValid();
 	}
 
-	void Camera::renderCamera(std::vector<bool>& screen, int screenWidth, int screenHeight, Triangle& input_triangle) const {
+	void Camera::renderCamera(std::vector<bool>& screen, int screenWidth, int screenHeight, Mesh& mesh_input) const {
 
 		if (!isValid()) { return; }
 
@@ -49,7 +49,10 @@ namespace graphics {
 				tempRay.directionVector = tempVector;
 
 				// Calculate intersection
-				(input_triangle.intersectionPoint(tempRay, tempPoint)) ? (screen[((screenWidth - 1) * y) + x] = true) : (screen[((screenWidth - 1) * y) + x] = false);
+				if (!mesh_input.isValid()) { continue; }
+				for (int i = 0; i < mesh_input.polygonCollection.size(); i++) {
+					if (mesh_input.polygonCollection.at(i).intersectionPoint(tempRay, tempPoint)) { screen[((screenWidth - 1) * y) + x] = true; }
+				}
 			}
 		}
 	}

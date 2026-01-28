@@ -6,16 +6,16 @@
 
 namespace graphics {
 
-	class Triangle
+	class Polygon
 	{
 	public:
-		Triangle();
-		Triangle(const Triangle& triangle_input);	// Copy constructor
-		Triangle(const Point& pointA_input, const Point& pointB_input, const Point& pointC_input);
+		Polygon();
+		Polygon(const Polygon& polygon_input);	// Copy constructor
+		Polygon(const Point& pointA_input, const Point& pointB_input, const Point& pointC_input);
 
-		Triangle& operator=(const Triangle& triangle_input);
-		bool operator!=(const Triangle& triangle_input) const;
-		bool operator==(const Triangle& triangle_input) const;
+		Polygon& operator=(const Polygon& polygon_input);
+		bool operator!=(const Polygon& polygon_input) const;
+		bool operator==(const Polygon& polygon_input) const;
 
 		bool isValid() const;
 		Point getPointA();
@@ -33,7 +33,7 @@ namespace graphics {
 		Point pointA, pointB, pointC;
 
 		//	Cached data
-		Plane mainPlane;					// Plane which overlaps the triangle
-		Plane planeAB, planeBC, planeCA;	// These planes are perpendicular to the main plane and define the borders of the triangle (like a cookie cutter); normals point inside
+		Plane mainPlane;					// Plane which overlaps the polygon
+		Plane planeAB, planeBC, planeCA;	// These planes are perpendicular to the main plane and define the borders of the polygon (like a cookie cutter); normals point inside
 	};
 }
