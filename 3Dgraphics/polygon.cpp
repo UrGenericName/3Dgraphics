@@ -60,9 +60,9 @@ namespace graphics {
 	void Polygon::newPointC(Point& input_point) { pointC = input_point; updateCachedData(); }
 
 	// Overrides point_output with intersection point and returns true, returns false if not valid intersection
-	bool Polygon::intersectionPoint(const Line& line_input, Point& point_output) const {
+	bool Polygon::intersectionPoint(const Line& line_input, Point& point_output, double* t_output) const {
 
-		if (!mainPlane.intersectionPoint(line_input, point_output)) { return false; }
+		if (!mainPlane.intersectionPoint(line_input, point_output, t_output)) { return false; }
 
 		// If point is not within "cookie-cutter" then return false
 		if (!planeAB.planeInequality(point_output)) { return false; }
@@ -70,6 +70,10 @@ namespace graphics {
 		if (!planeCA.planeInequality(point_output)) { return false; }
 
 		return true;
+	}
+
+	Vector* Polygon::normalVector() const {
+		return (new Vector(mainPlane.normalVector));
 	}
 
 	// Updates the internal plane member variables based on the point A, B and C

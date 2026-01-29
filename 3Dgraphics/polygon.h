@@ -24,7 +24,8 @@ namespace graphics {
 		void newPointA(Point& point_input);
 		void newPointB(Point& point_input);
 		void newPointC(Point& point_input);
-		bool intersectionPoint(const Line& line_input, Point& point_output) const;
+		bool intersectionPoint(const Line& line_input, Point& point_output, double* t_output = nullptr) const;
+		Vector* normalVector() const;
 
 	private: // Do not want outside functions messing with these directly, they should use the provided public member functions
 

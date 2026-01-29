@@ -1,6 +1,10 @@
 #pragma once
 #include <vector>
+#include "point.h"
+#include "angle.h"
 #include "polygon.h"
+#include "material.h"
+#include "shaders.h"
 
 namespace graphics {
 
@@ -9,10 +13,12 @@ namespace graphics {
 	public:
 
 		Mesh();
-		Mesh(const Mesh& mesh_input); // Copy constructor
 
 		bool isValid() const;
-
+		
+		Point position;
+		Angle rotation;
+		Material material;
 		std::vector<Polygon> polygonCollection;
 	};
 }

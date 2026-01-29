@@ -48,7 +48,7 @@ namespace graphics {
 	}
 
 	// Overrides point_output, returns false if no valid intersection
-	bool Plane::intersectionPoint(const Line& line_input, Point& point_output) const {
+	bool Plane::intersectionPoint(const Line& line_input, Point& point_output, double* t_output) const {
 
 		// Return false if plane normal is not valid
 		if (!normalVector.isValid()) { return false; }
@@ -63,6 +63,9 @@ namespace graphics {
 		double tNumerator = (normalVector.x * (pointOnPlane.x - line_input.pointOnLine.x)) + (normalVector.y * (pointOnPlane.y - line_input.pointOnLine.y)) + (normalVector.z * (pointOnPlane.z - line_input.pointOnLine.z));
 		double tDenominator = (normalVector.x * line_input.directionVector.x) + (normalVector.y * line_input.directionVector.y) + (normalVector.z * line_input.directionVector.z);
 		double t = tNumerator / tDenominator;
+
+		// If t_output is a given argument, then assign it with t
+		if (t_output != nullptr) { *t_output = t; }
 
 		line_input.pointFromT(t, point_output);
 		return true;

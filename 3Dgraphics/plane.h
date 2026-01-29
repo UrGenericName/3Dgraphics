@@ -19,7 +19,7 @@ namespace graphics {
 
 		bool isValid() const;
 		bool planeInequality(const Point& point_input) const;
-		bool intersectionPoint(const Line& line_input, Point& point_output) const;
+		bool intersectionPoint(const Line& line_input, Point& point_output, double* t_output = nullptr) const;
 		void print() const;
 
 		// EQUATION: A(x - x0) + B(y - y0) + C(z - z0) = 0

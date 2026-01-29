@@ -1,7 +1,9 @@
 #pragma once
+#include <vector>
 #include "angle.h"
 #include "mesh.h"
-#include <vector>
+#include "pixel.h"
+#include "scene.h"
 
 namespace graphics {
 
@@ -13,7 +15,7 @@ namespace graphics {
 		Camera(const Camera& input_camera);
 
 		bool isValid() const;
-		void renderCamera(std::vector<bool>& screen, int screenWidth, int screenHeight, Mesh& mesh_polygon) const;
+		void renderCamera(std::vector<Pixel>& screen, int screenWidth, int screenHeight, Scene& scene_polygon) const;
 
 		Point position;
 		Angle rotation;
