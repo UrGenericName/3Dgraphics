@@ -16,6 +16,7 @@ namespace graphics {
 		bool operator!=(const Point& point_input) const;
 		bool operator==(const Point& point_input) const;
 
+		value_type distance(const Point& point_input) const;
 		void print() const;
 
 		value_type x, y, z;

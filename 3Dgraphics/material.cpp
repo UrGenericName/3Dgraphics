@@ -28,8 +28,16 @@ namespace graphics {
 	// Greyscale shader which shades the polygon based on the angle
 	unsigned int Material::shadePhysics(Line& ray_input, Point& intersection_point, Polygon& polygon_input) const {
 
-		float tempDot = ray_input.directionVector.dotProduct(*polygon_input.normalVector());	// determines the dot product of the polygon normal and ray vector
+		Vector rayNormalized = ray_input.directionVector;
+		rayNormalized.normalize();
+
+		Vector* normalVector = polygon_input.normalVector();
+		normalVector->normalize();
+
+		float tempDot = rayNormalized.dotProduct(*normalVector);	// determines the dot product of the polygon normal and ray vector
 		unsigned int illumination = std::abs(tempDot) * 255;
+
+		delete normalVector;
 
 		return (illumination << 16) | (illumination << 8) | (illumination);	// takes the illumination and converts it to 0xRRGGBB
 	}

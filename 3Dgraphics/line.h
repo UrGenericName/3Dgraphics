@@ -1,6 +1,7 @@
 #pragma once
 #include "point.h"
 #include "vector.h"
+#include "angle.h"
 
 namespace graphics {
 

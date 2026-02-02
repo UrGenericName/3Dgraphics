@@ -20,8 +20,8 @@ namespace raylib {	// defined within namespace so names don't clash with graphic
 
 using namespace graphics;
 
-#define SCREEN_WIDTH 1920/4
-#define SCREEN_HEIGHT 1080/4
+#define SCREEN_WIDTH 1920/2
+#define SCREEN_HEIGHT 1080/2
 
 
 
@@ -29,42 +29,17 @@ int main() {
 
 	Scene scene;
 
-	Point camPoint(-5.1, 3.9, 4.1);
-	Angle camAngle(0, 0, 0);
+	Point camPoint(-1.5, 2, 1.1);
+	Angle camAngle(0.4, -.9, 0);
 	Camera camera(camPoint, camAngle, 3.14159265 / 2);
 
-	Mesh pyramid;
-	generatePyramid(pyramid);
-	pyramid.position = { 2, 1, 3 };
-	pyramid.material.shader = shaders::physics;
+	Mesh monkey;
+	generateMonkey(monkey);
+	monkey.material.shader = physics;
+	monkey.material.color = 0xffffff;
+	scene.meshCollection.push_back(monkey);
 
-	Mesh cube;
-	generateCube(cube);
-	cube.position = { 2, 1, 2 };
-	cube.material.shader = shaders::physics;
 
-	Mesh cylinder;
-	generateCylinder(cylinder);
-	cylinder.position = { 2, 1, 0 };
-	cylinder.material.shader = shaders::physics;
-
-	scene.meshCollection.push_back(pyramid);
-	scene.meshCollection.push_back(cube);
-	scene.meshCollection.push_back(cylinder);
-
-	pyramid.position.y = -1;
-	cube.position.y = -1;
-	cylinder.position.y = -1;
-	pyramid.material.shader = shaders::flat;
-	pyramid.material.color = 0xff0000;
-	cube.material.shader = shaders::flat;
-	cube.material.color = 0x00ff00;
-	cylinder.material.shader = shaders::flat;
-	cylinder.material.color = 0x0000ff;
-
-	scene.meshCollection.push_back(pyramid);
-	scene.meshCollection.push_back(cube);
-	scene.meshCollection.push_back(cylinder);
 
 	raylib::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Graphics");
 	raylib::SetTargetFPS(30);
@@ -87,10 +62,12 @@ int main() {
 		}
 
 		// CAMERA ROTATION 
-		if (raylib::IsKeyDown(raylib::KEY_UP)) { camera.rotation.pitch += .1; }
-		if (raylib::IsKeyDown(raylib::KEY_LEFT)) { camera.rotation.yaw += .1; }
-		if (raylib::IsKeyDown(raylib::KEY_DOWN)) { camera.rotation.pitch -= .1; }
+		if (raylib::IsKeyDown(raylib::KEY_UP)) { camera.rotation.pitch -= .1; }
+		if (raylib::IsKeyDown(raylib::KEY_DOWN)) { camera.rotation.pitch += .1; }
 		if (raylib::IsKeyDown(raylib::KEY_RIGHT)) { camera.rotation.yaw -= .1; }
+		if (raylib::IsKeyDown(raylib::KEY_LEFT)) { camera.rotation.yaw += .1; }
+		if (raylib::IsKeyDown(raylib::KEY_E)) { camera.rotation.roll -= .1; }
+		if (raylib::IsKeyDown(raylib::KEY_Q)) { camera.rotation.roll += .1; }
 
 		// CAMERA MOVEMENT 
 		if (raylib::IsKeyDown(raylib::KEY_W)) { camera.position.x += .1; }
@@ -101,7 +78,7 @@ int main() {
 		if (raylib::IsKeyDown(raylib::KEY_LEFT_CONTROL)) { camera.position.z -= .1; }
 
 		// DEBUG
-		if (raylib::IsKeyDown(raylib::KEY_E)) { camera.position.print(); camera.rotation.print(); }
+		if (raylib::IsKeyDown(raylib::KEY_F)) { camera.position.print(); camera.rotation.print(); }
 
 		raylib::EndDrawing();
 	}

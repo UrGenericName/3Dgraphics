@@ -1,5 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "vector.h"
+#include "angle.h"
 #include <cmath>
 #include <iostream>
 
@@ -40,6 +41,24 @@ namespace graphics {
 		return result;
 	}
 
+	Vector Vector::operator*(const Vector& vector_input) const {
+		Vector result;
+		result.x = x * vector_input.x;
+		result.y = y * vector_input.y;
+		result.z = z * vector_input.z;
+
+		return result;
+	}
+
+	Vector Vector::operator/(const Vector& vector_input) const {
+		Vector result;
+		result.x = x / vector_input.x;
+		result.y = y / vector_input.y;
+		result.z = z / vector_input.z;
+
+		return result;
+	}
+
 	Vector& Vector::operator=(const Vector& vector_input) {
 		x = vector_input.x;
 		y = vector_input.y;
@@ -68,6 +87,49 @@ namespace graphics {
 		return !(x == 0 && y == 0 && z == 0);
 	}
 
+	void Vector::rotate(const Angle& rotation_input) {
+
+		// --- Rotate around global Z (yaw) ---
+		value_type tempX = x;
+		value_type tempY = y;
+		x = tempX * cos(rotation_input.yaw) - tempY * sin(rotation_input.yaw);
+		y = tempX * sin(rotation_input.yaw) + tempY * cos(rotation_input.yaw);
+
+		// --- Rotate around global Y (pitch) ---
+		tempX = x;
+		value_type tempZ = z;
+		x = tempX * cos(rotation_input.pitch) + tempZ * sin(rotation_input.pitch);
+		z = -tempX * sin(rotation_input.pitch) + tempZ * cos(rotation_input.pitch);
+
+		// --- Rotate around global X (roll) ---
+		tempY = y;
+		tempZ = z;
+		y = tempY * cos(rotation_input.roll) - tempZ * sin(rotation_input.roll);
+		z = tempY * sin(rotation_input.roll) + tempZ * cos(rotation_input.roll);
+
+
+	}
+
+	void Vector::rotateAroundAxis(const Vector& axis_input, value_type angle_input) {
+		Vector k = axis_input;
+		k.normalize();
+
+		Vector v = *this; // save original vector
+
+		Vector kCrossV;
+		kCrossV.crossProduct(k, v);
+		value_type kDotV = k.dotProduct(v);
+
+		value_type tempCos = cos(angle_input);
+		value_type tempSin = sin(angle_input);
+
+		// Rodrigues formula
+		x = v.x * tempCos + kCrossV.x * tempSin + k.x * kDotV * (1 - tempCos);
+		y = v.y * tempCos + kCrossV.y * tempSin + k.y * kDotV * (1 - tempCos);
+		z = v.z * tempCos + kCrossV.z * tempSin + k.z * kDotV * (1 - tempCos);
+	}
+
+
 	void Vector::crossProduct(const Vector vectorA_input, const Vector vectorB_input) {
 		x = (vectorA_input.y * vectorB_input.z) - (vectorA_input.z * vectorB_input.y);
 		y = (vectorA_input.z * vectorB_input.x) - (vectorA_input.x * vectorB_input.z);
@@ -75,10 +137,7 @@ namespace graphics {
 	}
 
 	value_type Vector::dotProduct(const Vector& vector_input) const {
-		value_type vectorAMagnitude = getMagnitude();
-		value_type vectorBMagnitude = vector_input.getMagnitude();
-
-		return ((x / vectorAMagnitude) * (vector_input.x / vectorBMagnitude)) + ((y / vectorAMagnitude) * (vector_input.y / vectorBMagnitude)) + ((z / vectorAMagnitude) * (vector_input.z / vectorBMagnitude));
+		return (x * vector_input.x) + (y * vector_input.y) + (z * vector_input.z);
 	}
 
 	value_type Vector::getMagnitude() const {

@@ -49,6 +49,10 @@ namespace graphics {
 		return (x == point_input.x) && (y == point_input.y) && (z == point_input.z);
 	}
 
+	value_type Point::distance(const Point& point_input) const {
+		return sqrt(pow(x - point_input.x, 2) + pow(y - point_input.y, 2) + pow(z - point_input.z, 2));
+	}
+
 	void Point::print() const {
 		std::cout << "(x, y, z): " << x << ", " << y << ", " << z << std::endl;
 	}
