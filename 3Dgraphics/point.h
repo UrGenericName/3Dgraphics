@@ -1,4 +1,5 @@
 #pragma once
+#include "angle.h"
 
 namespace graphics {
 
@@ -12,11 +13,14 @@ namespace graphics {
 
 		Point operator+(const Point& point_input) const;
 		Point operator-(const Point& point_input) const;
+		Point operator*(value_type scale_input) const;
 		Point& operator=(const Point& point_input);
 		bool operator!=(const Point& point_input) const;
 		bool operator==(const Point& point_input) const;
 
 		value_type distance(const Point& point_input) const;
+		void rotate(const Angle& rotation_input);
+		void scale(value_type scale_input);
 		void print() const;
 
 		value_type x, y, z;

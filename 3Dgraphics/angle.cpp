@@ -4,7 +4,7 @@
 #include "constants.h"
 
 namespace graphics {
-	Angle::Angle(value_type input_pitch, value_type input_yaw, value_type input_roll) {
+	Angle::Angle(float input_pitch, float input_yaw, float input_roll) {
 		pitch = input_pitch;
 		yaw = input_yaw;
 		roll = input_roll;

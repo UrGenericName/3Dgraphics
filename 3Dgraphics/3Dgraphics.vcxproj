@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="angle.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="graphics.h" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="material.cpp" />

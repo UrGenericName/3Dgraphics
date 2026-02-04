@@ -1,0 +1,13 @@
+#pragma once
+#include "point.h"
+#include "vector.h"
+#include "line.h"
+#include "plane.h"
+#include "polygon.h"
+#include "mesh.h"
+#include "camera.h"
+#include "scene.h"
+#include "angle.h"
+#include "pixel.h"
+#include "shaders.h"
+#include "shape_presets.h"

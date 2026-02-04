@@ -1,6 +1,7 @@
 #pragma once
-#include "point.h"
 #include <iostream>
+#include "point.h"
+#include "angle.h"
 
 namespace graphics {
 	Point::Point(value_type x_input, value_type y_input, value_type z_input) {
@@ -51,6 +52,35 @@ namespace graphics {
 
 	value_type Point::distance(const Point& point_input) const {
 		return sqrt(pow(x - point_input.x, 2) + pow(y - point_input.y, 2) + pow(z - point_input.z, 2));
+	}
+
+	void Point::rotate(const Angle& rotation_input) {
+
+		// --- Rotate around global Z (yaw) ---
+		value_type tempX = x;
+		value_type tempY = y;
+		x = tempX * cos(rotation_input.yaw) - tempY * sin(rotation_input.yaw);
+		y = tempX * sin(rotation_input.yaw) + tempY * cos(rotation_input.yaw);
+
+		// --- Rotate around global Y (pitch) ---
+		tempX = x;
+		value_type tempZ = z;
+		x = tempX * cos(rotation_input.pitch) + tempZ * sin(rotation_input.pitch);
+		z = -tempX * sin(rotation_input.pitch) + tempZ * cos(rotation_input.pitch);
+
+		// --- Rotate around global X (roll) ---
+		tempY = y;
+		tempZ = z;
+		y = tempY * cos(rotation_input.roll) - tempZ * sin(rotation_input.roll);
+		z = tempY * sin(rotation_input.roll) + tempZ * cos(rotation_input.roll);
+
+
+	}
+
+	void Point::scale(value_type scale_input) {
+		x *= scale_input;
+		y *= scale_input;
+		z *= scale_input;
 	}
 
 	void Point::print() const {

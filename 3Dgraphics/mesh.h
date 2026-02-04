@@ -14,11 +14,19 @@ namespace graphics {
 
 		Mesh();
 
+		friend class Camera;
+
 		bool isValid() const;
 		
 		Point position;
 		Angle rotation;
+		float scale = 1.f;
 		Material material;
 		std::vector<Polygon> polygonCollection;
+
+	private:
+
+		void updateWorldSpacePolygonCollection();
+		std::vector<Polygon> worldSpacePolygonCollection;
 	};
 }
