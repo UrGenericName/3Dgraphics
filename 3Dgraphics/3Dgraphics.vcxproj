@@ -46,7 +46,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -120,6 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,35 +130,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="angle.cpp" />
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="graphics.h" />
-    <ClCompile Include="line.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="material.cpp" />
-    <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="plane.cpp" />
-    <ClCompile Include="point.cpp" />
-    <ClCompile Include="polygon.cpp" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="shape_presets.cpp" />
-    <ClCompile Include="vector.cpp" />
+    <ClInclude Include="include\3Dgraphics\3Dgraphics.h" />
+    <ClInclude Include="include\3Dgraphics\angle.h" />
+    <ClInclude Include="include\3Dgraphics\camera.h" />
+    <ClInclude Include="include\3Dgraphics\constants.h" />
+    <ClInclude Include="include\3Dgraphics\line.h" />
+    <ClInclude Include="include\3Dgraphics\material.h" />
+    <ClInclude Include="include\3Dgraphics\mesh.h" />
+    <ClInclude Include="include\3Dgraphics\pixel.h" />
+    <ClInclude Include="include\3Dgraphics\plane.h" />
+    <ClInclude Include="include\3Dgraphics\point.h" />
+    <ClInclude Include="include\3Dgraphics\polygon.h" />
+    <ClInclude Include="include\3Dgraphics\scene.h" />
+    <ClInclude Include="include\3Dgraphics\shaders.h" />
+    <ClInclude Include="include\3Dgraphics\shape_presets.h" />
+    <ClInclude Include="include\3Dgraphics\vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="angle.h" />
-    <ClInclude Include="camera.h" />
-    <ClInclude Include="constants.h" />
-    <ClInclude Include="line.h" />
-    <ClInclude Include="material.h" />
-    <ClInclude Include="mesh.h" />
-    <ClInclude Include="pixel.h" />
-    <ClInclude Include="plane.h" />
-    <ClInclude Include="point.h" />
-    <ClInclude Include="polygon.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="shaders.h" />
-    <ClInclude Include="shape_presets.h" />
-    <ClInclude Include="vector.h" />
+    <ClCompile Include="src\angle.cpp" />
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\line.cpp" />
+    <ClCompile Include="src\material.cpp" />
+    <ClCompile Include="src\mesh.cpp" />
+    <ClCompile Include="src\plane.cpp" />
+    <ClCompile Include="src\point.cpp" />
+    <ClCompile Include="src\polygon.cpp" />
+    <ClCompile Include="src\scene.cpp" />
+    <ClCompile Include="src\shape_presets.cpp" />
+    <ClCompile Include="src\vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

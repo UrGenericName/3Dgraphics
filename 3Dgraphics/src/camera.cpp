@@ -1,11 +1,11 @@
 #pragma once
 #include <cmath>
 #include <iostream>
-#include "camera.h"
-#include "angle.h"
-#include "mesh.h"
-#include "pixel.h"
-#include "scene.h"
+#include "3Dgraphics/camera.h"
+#include "3Dgraphics/angle.h"
+#include "3Dgraphics/mesh.h"
+#include "3Dgraphics/pixel.h"
+#include "3Dgraphics/scene.h"
 
 namespace raylib {	// defined within namespace so names don't clash with graphics
 #include <raylib.h>

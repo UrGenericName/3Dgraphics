@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "point.h"
-#include "angle.h"
+#include "3Dgraphics/point.h"
+#include "3Dgraphics/angle.h"
 
 namespace graphics {
 	Point::Point(value_type x_input, value_type y_input, value_type z_input) {

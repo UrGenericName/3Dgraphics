@@ -1,5 +1,5 @@
 #pragma once
-#include "scene.h"
+#include "3Dgraphics/scene.h"
 
 namespace graphics {
 	Scene::Scene() {}

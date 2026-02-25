@@ -1,6 +1,6 @@
-#include "shape_presets.h"
-#include "mesh.h"
-#include "polygon.h"
+#include "3Dgraphics/shape_presets.h"
+#include "3Dgraphics/mesh.h"
+#include "3Dgraphics/polygon.h"
 
 namespace graphics {
 

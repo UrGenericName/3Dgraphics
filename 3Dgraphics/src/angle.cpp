@@ -1,7 +1,7 @@
-#include "angle.h"
+#include "3Dgraphics/angle.h"
 #include <cmath>
 #include <iostream>
-#include "constants.h"
+#include "3Dgraphics/constants.h"
 
 namespace graphics {
 	Angle::Angle(float input_pitch, float input_yaw, float input_roll) {

@@ -1,5 +1,5 @@
 #pragma once
-#include "mesh.h"
+#include "3Dgraphics/mesh.h"
 
 namespace graphics {
 	Mesh::Mesh() {}

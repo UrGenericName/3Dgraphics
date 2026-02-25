@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "vector.h"
-#include "angle.h"
+#include "3Dgraphics/vector.h"
+#include "3Dgraphics/angle.h"
 #include <cmath>
 #include <iostream>
 

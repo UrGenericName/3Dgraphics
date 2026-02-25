@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
-#include "material.h"
-#include "mesh.h"
-#include "vector.h"
+#include "3Dgraphics/material.h"
+#include "3Dgraphics/mesh.h"
+#include "3Dgraphics/vector.h"
 
 namespace graphics {
 	Material::Material() {}
