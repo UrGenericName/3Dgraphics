@@ -363,6 +363,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Sandbox/Sandbox.vcxproj
-/Sandbox/Sandbox.vcxproj.filters
 /3Dgraphics/main.cpp
