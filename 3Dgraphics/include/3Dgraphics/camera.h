@@ -19,14 +19,14 @@ namespace graphics {
 		Camera(const Camera& input_camera);
 
 		bool isValid() const;
-		void renderCamera(int screenWidth, int screenHeight, Scene& scene_polygon);
+		void renderCamera(int screenWidth, int screenHeight, Scene& scene);
 
 		Point position;
 		Angle rotation;
 		value_type FOV;
 
 	private:
-		void renderFrame(std::vector<raylib::Color>& frameBuffer, int screenWidth, int screenHeight, Scene& scene_polygon);
+		void renderFrame(std::vector<raylib::Color>& frameBuffer, int screenWidth, int screenHeight, Scene& scene);
 		void renderPixelGroup(std::vector<raylib::Color>& frameBuffer, int pixelsPerThread, int threadIndex, int screenWidth, int screenHeight, Scene& scene_input, Vector& camVector, value_type horizontalFOV, value_type verticalFOV);
 		void renderPixel(std::vector<raylib::Color>& frameBuffer, int x, int y, int screenWidth, int screenHeight, Scene& scene_input, Vector& camVector, value_type horizontalFOV, value_type verticalFOV);
 		void calculateGrid(int& screenWidth, value_type& horizontalFOV, value_type& verticalFOV, Pixel& pixel, Line& ray, Point& intersectionPoint, value_type& tempI) const;
