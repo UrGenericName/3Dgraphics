@@ -1,7 +1,7 @@
-![Blender Monkey Render](https://marius-arcay.netlify.app/icons/project_3d_graphics.jpg)
-
 # Static 3D Graphics Library Built in C++
 WARNING: This is a personal study, do not expect the flexibility or reliability to be anywhere near existing 3D graphics libraries; use Vulkan, Directx, OpenGl etc.
+
+![Blender Monkey Render](https://marius-arcay.netlify.app/icons/project_3d_graphics.jpg)
 
 __Key-features:__
 - scene, mesh and shader architecture,
