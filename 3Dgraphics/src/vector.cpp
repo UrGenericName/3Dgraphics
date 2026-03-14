@@ -111,22 +111,22 @@ namespace graphics {
 	}
 
 	void Vector::rotateAroundAxis(const Vector& axis_input, value_type angle_input) {
+
 		Vector k = axis_input;
 		k.normalize();
 
-		Vector v = *this; // save original vector
-
 		Vector kCrossV;
-		kCrossV.crossProduct(k, v);
-		value_type kDotV = k.dotProduct(v);
+		kCrossV.crossProduct(k, *this);
+		value_type kDotV = k.dotProduct(*this);
 
 		value_type tempCos = cos(angle_input);
 		value_type tempSin = sin(angle_input);
+		value_type KDotVTimesOneMinusCos = kDotV * (1 - tempCos);
 
 		// Rodrigues formula
-		x = v.x * tempCos + kCrossV.x * tempSin + k.x * kDotV * (1 - tempCos);
-		y = v.y * tempCos + kCrossV.y * tempSin + k.y * kDotV * (1 - tempCos);
-		z = v.z * tempCos + kCrossV.z * tempSin + k.z * kDotV * (1 - tempCos);
+		x = this->x * tempCos + kCrossV.x * tempSin + k.x * KDotVTimesOneMinusCos;
+		y = this->y * tempCos + kCrossV.y * tempSin + k.y * KDotVTimesOneMinusCos;
+		z = this->z * tempCos + kCrossV.z * tempSin + k.z * KDotVTimesOneMinusCos;
 	}
 
 
@@ -141,7 +141,7 @@ namespace graphics {
 	}
 
 	value_type Vector::getMagnitude() const {
-		return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+		return sqrt(x * x + y * y + z * z);
 	}
 
 	// returns false if not valid vector
@@ -149,11 +149,11 @@ namespace graphics {
 
 		if (!isValid()) { return false; }
 
-		float magnitude = getMagnitude();
+		float OneDividedBymagnitude = 1 / sqrt(x * x + y * y + z * z);	// we don't call getMagnitude because the compiler will turn this into a faster inverse 
 
-		x /= magnitude;
-		y /= magnitude;
-		z /= magnitude;
+		x *= OneDividedBymagnitude;
+		y *= OneDividedBymagnitude;
+		z *= OneDividedBymagnitude;
 
 		return true;
 	}

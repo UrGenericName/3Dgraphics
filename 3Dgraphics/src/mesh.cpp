@@ -15,47 +15,47 @@ namespace graphics {
 		// Rotates polygons
 		for (int i = 0; i < worldSpacePolygonCollection.size(); i++) {
 
-			Point pointA { worldSpacePolygonCollection.at(i).getPointA() };
-			Point pointB { worldSpacePolygonCollection.at(i).getPointB() };
-			Point pointC { worldSpacePolygonCollection.at(i).getPointC() };
+			Point pointA { worldSpacePolygonCollection[i].getPointA() };
+			Point pointB { worldSpacePolygonCollection[i].getPointB() };
+			Point pointC { worldSpacePolygonCollection[i].getPointC() };
 
 			pointA.rotate(rotation);
 			pointB.rotate(rotation);
 			pointC.rotate(rotation);
 
-			worldSpacePolygonCollection.at(i).newPointA(pointA);
-			worldSpacePolygonCollection.at(i).newPointB(pointB);
-			worldSpacePolygonCollection.at(i).newPointC(pointC);
+			worldSpacePolygonCollection[i].newPointA(pointA);
+			worldSpacePolygonCollection[i].newPointB(pointB);
+			worldSpacePolygonCollection[i].newPointC(pointC);
 
 		}
 
 		// Scales polygons
 		for (int i = 0; i < worldSpacePolygonCollection.size(); i++) {
 
-			Point pointA{ worldSpacePolygonCollection.at(i).getPointA() };
-			Point pointB{ worldSpacePolygonCollection.at(i).getPointB() };
-			Point pointC{ worldSpacePolygonCollection.at(i).getPointC() };
+			Point pointA{ worldSpacePolygonCollection[i].getPointA() };
+			Point pointB{ worldSpacePolygonCollection[i].getPointB() };
+			Point pointC{ worldSpacePolygonCollection[i].getPointC() };
 
 			pointA.scale(scale);
 			pointB.scale(scale);
 			pointC.scale(scale);
 
-			worldSpacePolygonCollection.at(i).newPointA(pointA);
-			worldSpacePolygonCollection.at(i).newPointB(pointB);
-			worldSpacePolygonCollection.at(i).newPointC(pointC);
+			worldSpacePolygonCollection[i].newPointA(pointA);
+			worldSpacePolygonCollection[i].newPointB(pointB);
+			worldSpacePolygonCollection[i].newPointC(pointC);
 
 		}
 
 		// Translates polygons
 		for (int i = 0; i < worldSpacePolygonCollection.size(); i++) {
 
-			Point pointA{ worldSpacePolygonCollection.at(i).getPointA() + position };
-			Point pointB{ worldSpacePolygonCollection.at(i).getPointB() + position };
-			Point pointC{ worldSpacePolygonCollection.at(i).getPointC() + position };
+			Point pointA{ worldSpacePolygonCollection[i].getPointA() + position };
+			Point pointB{ worldSpacePolygonCollection[i].getPointB() + position };
+			Point pointC{ worldSpacePolygonCollection[i].getPointC() + position };
 
-			worldSpacePolygonCollection.at(i).newPointA(pointA);
-			worldSpacePolygonCollection.at(i).newPointB(pointB);
-			worldSpacePolygonCollection.at(i).newPointC(pointC);
+			worldSpacePolygonCollection[i].newPointA(pointA);
+			worldSpacePolygonCollection[i].newPointB(pointB);
+			worldSpacePolygonCollection[i].newPointC(pointC);
 
 		}
 	}

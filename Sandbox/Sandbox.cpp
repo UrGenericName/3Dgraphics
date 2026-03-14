@@ -2,8 +2,8 @@
 #include <iostream>
 #include <3Dgraphics/3Dgraphics.h> 
 
-#define SCREEN_WIDTH 1920/4
-#define SCREEN_HEIGHT 1080/4
+#define SCREEN_WIDTH 1920/2
+#define SCREEN_HEIGHT 1080/2
 
 using namespace graphics;
 
@@ -17,7 +17,7 @@ int main() {
 	Camera camera(camPoint, camAngle, camFOV);
 
 	Mesh cube;
-	generateCube(cube);
+	generateCylinder(cube);
 	cube.material.shader = physics;
 	scene.meshCollection.push_back(cube);
 
