@@ -17,8 +17,8 @@ int main() {
 	Camera camera(camPoint, camAngle, camFOV);
 
 	Mesh cube;
-	generateCylinder(cube);
-	//cube.material.shader = physics;
+	generateMonkey(cube);
+	cube.material.shader = physics;
 	scene.meshCollection.push_back(cube);
 
 	camera.renderCamera(SCREEN_WIDTH, SCREEN_HEIGHT, scene);
