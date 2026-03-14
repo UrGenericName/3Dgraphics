@@ -5,7 +5,7 @@ WARNING: This is a personal study, do not expect the flexibility or reliability 
 
 __Key-features:__
 - scene, mesh and shader architecture,
-- multi-threading,
+- multi-threading
 - OBJ importer
 
 # Documentation
