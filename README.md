@@ -92,8 +92,22 @@ Vector* normalVector() const;
 
 ### Additional Shape Presets (Not part of Polygon Class)
 ```cpp
-	void generateCube(Mesh& mesh_input);
-	void generatePyramid(Mesh& mesh_input);
-	void generateCylinder(Mesh& mesh_input);
-	void generateMonkey(Mesh& mesh_input);
+void generateCube(Mesh& mesh_input);
+void generatePyramid(Mesh& mesh_input);
+void generateCylinder(Mesh& mesh_input);
+void generateMonkey(Mesh& mesh_input);
+```
+
+<br>
+
+## Material Class
+### Public Member variables
+```cpp
+unsigned int shader = shaders::XXX;
+unsigned int color;
+```
+## Shader Types
+```
+shaders::flat	// Renders the color directly
+shader::physics	// Grayscale shading based on the angle between the normal and camera ray
 ```
