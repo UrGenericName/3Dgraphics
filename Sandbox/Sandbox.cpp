@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <3Dgraphics/3Dgraphics.h> 
 
 #define SCREEN_WIDTH 1920/4
@@ -16,10 +17,9 @@ int main() {
 	Camera camera(camPoint, camAngle, camFOV);
 
 	Mesh cube;
-	generateMonkey(cube);
+	generateCube(cube);
 	cube.material.shader = physics;
 	scene.meshCollection.push_back(cube);
-
 
 	camera.renderCamera(SCREEN_WIDTH, SCREEN_HEIGHT, scene);
 
