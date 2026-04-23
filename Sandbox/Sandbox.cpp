@@ -11,17 +11,14 @@ int main() {
 
 	Scene scene;
 
-	Point camPoint(-1.5, 2, 1.1);
-	Angle camAngle(0.4, -.9, 0);
-	float camFOV = 3.14159265 / 3;
-	Camera camera(camPoint, camAngle, camFOV);
+	Camera cam( Point(-1.5, 2, 1.1), Angle(0.4, -.9, 0), 3.14159/3 );
 
 	Mesh cube;
-	generateMonkey(cube);
+	generateCube(cube);
 	cube.material.shader = physics;
-	scene.meshCollection.push_back(cube);
+	scene.meshCollection.push_back(cube);	
 
-	camera.renderCamera(SCREEN_WIDTH, SCREEN_HEIGHT, scene);
+	cam.renderCamera(SCREEN_WIDTH, SCREEN_HEIGHT, scene);
 
 	return 0;
 }

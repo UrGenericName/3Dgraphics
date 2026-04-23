@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <chrono>
-
 #include <thread>
 #include <cmath>
 #include <iostream>
@@ -48,6 +45,7 @@ namespace graphics {
 		raylib::InitWindow(screenWidth, screenHeight, WINDOW_NAME);
 		raylib::SetTargetFPS(TARGET_FPS);
 
+		// Frame buffer initialization
 		std::vector<raylib::Color> frameBuffer(screenHeight * screenWidth);
 		raylib::Image img = raylib::GenImageColor(screenWidth, screenHeight, raylib::GetColor(scene_input.backgroundColor));
 		raylib::Texture2D tex = raylib::LoadTextureFromImage(img);
@@ -56,6 +54,7 @@ namespace graphics {
 		// Main loop
 		while (!raylib::WindowShouldClose())
 		{
+			// renders frame into frame buffer based on objects in scene_input
 			renderFrame(frameBuffer, screenWidth, screenHeight, scene_input);
 
 			userMoveCamera(CAM_MOVE_SPEED);
@@ -78,7 +77,7 @@ namespace graphics {
 		value_type verticalFOV = FOV;
 		(screenWidth > screenHeight) ? (verticalFOV *= (static_cast<float>(screenHeight) / screenWidth)) : (horizontalFOV *= (static_cast<float>(screenWidth) / screenHeight));	// truncates the FOV for the shorest axis (truncates either the xFOV or yFOV)
 
-		Vector camVector{ 1, 0, 0 };	// calculates camera vector, used for calculating roll
+		Vector camVector{ 1, 0, 0 };
 		camVector.rotateAroundAxis(Vector{ 0, 1, 0 }, rotation.pitch);
 		camVector.rotateAroundAxis(Vector{ 0, 0, 1 }, rotation.yaw);
 
@@ -130,15 +129,15 @@ namespace graphics {
 		value_type tempI;
 		Point tempPoint;
 		Line ray;
-		Pixel currentPixel;
+		Pixel currentPixel{ scene_input.backgroundColor };
 
-		// Calculate ray (with no rotation)
+		// Calculate ray (does not take camera rotation into account)
 		ray.directionVector.x = (screenWidth / 2) + tan(horizontalFOV / 2);
 		ray.directionVector.y = (screenWidth / 2) - x;
 		ray.directionVector.z = (screenHeight / 2) - y;
 		ray.pointOnLine = position;
 
-		// Rotate ray vector (rotation for camera works different than standard vector rotation)
+		// Rotate ray vector based on camera rotation
 		ray.directionVector.rotateAroundAxis(Vector{ 0, 1, 0 }, rotation.pitch);
 		ray.directionVector.rotateAroundAxis(Vector{ 0, 0, 1 }, rotation.yaw);
 		ray.directionVector.rotateAroundAxis(camVector, rotation.roll);
@@ -161,7 +160,8 @@ namespace graphics {
 			if (!currentMesh->isValid()) { continue; }
 
 			for (int j = 0; j < currentMesh->worldSpacePolygonCollection.size(); j++) {	// Iterate each polygon in mesh
-				// For each pixel, will fill the appropriate value in the given frame vector IF there is intersection, if the intersection is infront (tempI > 0), and if the intersection is closer than the last zBuffer
+
+				// If an intersection between the ray and polygon is detected AND the zBuffer is closer, then update the _____toBeShaded variables
 				if (currentMesh->worldSpacePolygonCollection[j].intersectionPoint(ray, tempPoint, &tempI) && tempI > 0 && tempI < currentPixel.zBuffer) {
 
 					// Store the mesh so the material shading can be done outside the loop
@@ -175,8 +175,9 @@ namespace graphics {
 			}
 		}
 
+		// once the actual intersected polygon is found, will call the material to shade the pixel
 		if (meshToBeShaded != nullptr) {
-			currentPixel.hex = meshToBeShaded->material.shade(ray, tempPoint, *polygonToBeShaded);	// call the material to shade to the pixel
+			currentPixel.hex = meshToBeShaded->material.shade(ray, tempPoint, *polygonToBeShaded);
 		}
 
 		// Store hex value to frameBuffer vector
