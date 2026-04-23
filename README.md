@@ -1,7 +1,7 @@
 # Static 3D Graphics Library Built in C++
 WARNING: This is a personal study, do not expect the flexibility or reliability to be anywhere near existing 3D graphics libraries; use Vulkan, Directx, OpenGl etc.
 
-![Blender Monkey Render](https://marius-arcay.netlify.app/icons/project_3d_graphics.jpg)
+![Blender Monkey Render](readme_thumbnail.png)
 
 __Key-features:__
 - scene, mesh and shader architecture,
@@ -92,8 +92,22 @@ Vector* normalVector() const;
 
 ### Additional Shape Presets (Not part of Polygon Class)
 ```cpp
-	void generateCube(Mesh& mesh_input);
-	void generatePyramid(Mesh& mesh_input);
-	void generateCylinder(Mesh& mesh_input);
-	void generateMonkey(Mesh& mesh_input);
+void generateCube(Mesh& mesh_input);
+void generatePyramid(Mesh& mesh_input);
+void generateCylinder(Mesh& mesh_input);
+void generateMonkey(Mesh& mesh_input);
+```
+
+<br>
+
+## Material Class
+### Public Member variables
+```cpp
+unsigned int shader = shaders::XXX;
+unsigned int color;
+```
+## Shader Types
+```
+shaders::flat	// Renders the color directly
+shader::physics	// Grayscale shading based on the angle between the normal and camera ray
 ```
