@@ -1,5 +1,5 @@
 # Static 3D Graphics Library Built in C++
-WARNING: This is a personal study, do not expect the flexibility or reliability to be anywhere near existing 3D graphics libraries; use Vulkan, Directx, OpenGl etc.
+WARNING: This is a personal study, do not expect the flexibility or reliability to be anywhere near existing 3D graphics libraries; use Vulkan, Directx, OpenGL etc.
 
 ![Blender Monkey Render](readme_thumbnail.png)
 
